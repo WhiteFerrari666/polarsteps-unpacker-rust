@@ -16,9 +16,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: Go to correct location
-      run: cd src-tauri
     - name: Build
-      run: cargo build --verbose
+      run: cargo build --verbose --manifest-path src-tauri/Cargo.toml
     - name: Run tests
-      run: cargo test --verbose
+      run: cargo test --verbose --manifest-path src-tauri/Cargo.toml
