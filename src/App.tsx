@@ -5,7 +5,7 @@ import "./App.css";
 
 function App() {
   const [greetMsg, setGreetMsg] = createSignal("");
-  const [name, setName] = createSignal("");
+  const [name, setPath] = createSignal("");
 
   async function greet() {
     // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
@@ -33,11 +33,11 @@ function App() {
         }}
       >
         <input
-          id="greet-input"
-          onChange={(e) => setName(e.currentTarget.value)}
-          placeholder="Enter a name..."
+          id="filepath"
+          onChange={(e) => setPath(e.currentTarget.value)}
+          placeholder="Enter the path to your user data..."
         />
-        <button type="submit">Greet</button>
+        <button type="submit">Generate!</button>
       </form>
 
       <p>{greetMsg()}</p>
