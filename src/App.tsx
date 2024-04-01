@@ -5,11 +5,17 @@ import "./App.css";
 
 function App() {
   const [greetMsg, setGreetMsg] = createSignal("");
-  const [name, setPath] = createSignal("");
+  const [path, setPath] = createSignal("");
+  const [file, setFile] = createSignal();
 
   async function greet() {
     // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
-    setGreetMsg(await invoke("greet", { name: name() }));
+    setGreetMsg(await invoke("greet", { name: path() }));
+  }
+
+  async function generateFile() {
+    // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
+    setFile(await invoke("generate_file", { data_path: path() }));
   }
 
   return (
@@ -37,10 +43,18 @@ function App() {
           onChange={(e) => setPath(e.currentTarget.value)}
           placeholder="Enter the path to your user data..."
         />
+        <button type="submit">Greet!</button>
+      </form>
+
+      <form class="row"
+        onSubmit={(e) => {
+          e.preventDefault();
+          generateFile();
+        }}>
         <button type="submit">Generate!</button>
       </form>
 
-      <p>{greetMsg()}</p>
+      <p>{path()}</p>
     </div>
   );
 }
