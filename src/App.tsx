@@ -4,6 +4,7 @@ import { invoke } from "@tauri-apps/api/tauri";
 import "./App.css";
 
 function App() {
+  // createSignal("") -> Store mit leerem String initialisieren
   const [greetMsg, setGreetMsg] = createSignal("");
   const [path, setPath] = createSignal("");
   const [file, setFile] = createSignal();
@@ -20,16 +21,14 @@ function App() {
 
   return (
     <div class="container">
-      <h1>Welcome to Tauri!</h1>
-      <h2>Polarsteps Unpacker is coming soon!!!</h2>
+      <h1>Welcome to Polarsteps Unpacker!</h1>
+      <h2>coming soon</h2>
 
       <div class="row">
         <a href="https://google.de" target="_blank">
-          <img src={logo} class="logo solid" alt="Polarsteps unpacker logo" />
+          <img src={logo} class="logo solid" alt="Polarsteps unpacker logo"/>
         </a>
       </div>
-
-      <p>Click on the Tauri, Vite, and Solid logos to learn more.</p>
 
       <form
         class="row"
@@ -37,13 +36,14 @@ function App() {
           e.preventDefault();
           greet();
         }}
+        autocomplete="off"
       >
         <input
-          id="filepath"
+          id="filepath" class="input"
           onChange={(e) => setPath(e.currentTarget.value)}
           placeholder="Enter the path to your user data..."
         />
-        <button type="submit">Greet!</button>
+        <button type="submit">Search</button>
       </form>
 
       <form class="row"
