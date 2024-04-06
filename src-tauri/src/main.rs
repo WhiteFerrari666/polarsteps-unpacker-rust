@@ -3,10 +3,10 @@
 
 // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
 #[tauri::command]
-fn greet(name: &str) -> String {
-    format!(
+fn show_path(path: &str) -> String {
+   format!(
         "Hello! Your data at {} is being made into a file, generated in Rust!",
-        name
+        path
     )
 }
 
@@ -19,8 +19,7 @@ fn generate_file(data_path: &str) -> () {
 fn main() {
     tauri::Builder::default()
         .plugin(tauri_plugin_log::Builder::default().build())
-        .invoke_handler(tauri::generate_handler![greet])
-        .invoke_handler(tauri::generate_handler![generate_file])
+        .invoke_handler(tauri::generate_handler![show_path, generate_file])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }

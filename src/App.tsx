@@ -5,17 +5,15 @@ import "./App.css";
 
 function App() {
   // createSignal("") -> Store mit leerem String initialisieren
-  const [greetMsg, setGreetMsg] = createSignal("");
   const [path, setPath] = createSignal("");
-  const [file, setFile] = createSignal();
+  const [file, setFile] = createSignal("");
 
-  async function greet() {
+  async function printPathMessage() {
     // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
-    setGreetMsg(await invoke("greet", { name: path() }));
+    setPath(await invoke("show_path", { path: path() }));
   }
 
   async function generateFile() {
-    // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
     setFile(await invoke("generate_file", { data_path: path() }));
   }
 
@@ -25,7 +23,7 @@ function App() {
       <h2>coming soon</h2>
 
       <div class="row">
-        <a href="https://google.de" target="_blank">
+        <a href="https://github.com/WhiteFerrari666/polarsteps-unpacker-rust.git" target="_blank">
           <img src={logo} class="logo solid" alt="Polarsteps unpacker logo"/>
         </a>
       </div>
@@ -34,16 +32,16 @@ function App() {
         class="row"
         onSubmit={(e) => {
           e.preventDefault();
-          greet();
+          printPathMessage();
         }}
         autocomplete="off"
       >
         <input
-          id="filepath" class="input"
+          id="filepath-input" class="input"
           onChange={(e) => setPath(e.currentTarget.value)}
           placeholder="Enter the path to your user data..."
         />
-        <button type="submit">Search</button>
+        <button type="submit">Print path</button>
       </form>
 
       <form class="row"
