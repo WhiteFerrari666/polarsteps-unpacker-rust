@@ -6,15 +6,17 @@ import "./App.css";
 function App() {
   // createSignal("") -> Store mit leerem String initialisieren
   const [path, setPath] = createSignal("");
+  const [greet, setGreeting] = createSignal("");
   const [file, setFile] = createSignal("");
 
   async function printPathMessage() {
     // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
-    setPath(await invoke("show_path", { path: path() }));
+    setGreeting(await invoke("show_path", { path: path() }));
   }
 
   async function generateFile() {
-    setFile(await invoke("generate_file", { data_path: path() }));
+    setPath(await invoke("generate_file", { data_path: path() }));
+    console.log(path())
   }
 
   return (
@@ -52,7 +54,7 @@ function App() {
         <button type="submit">Generate!</button>
       </form>
 
-      <p>{path()}</p>
+      <p>{greet()}</p>
     </div>
   );
 }
