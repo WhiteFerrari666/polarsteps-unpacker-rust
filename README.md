@@ -1,4 +1,10 @@
-## Small app that prints JSON content from Polarsteps into an MS Word document
+# Polarsteps Unpacker - Rust edition
+Small app that takes the contents of a Polarsteps user data export and converts it into an MS Word document.
+
+This is my project to get acquainted with Rust and, furthermore, with web technologies in the frontend.
+
+#### used frameworks
+Tauri/Rust in the Backend and SolidJS/Typescript in the frontend.
 
 #### run dev environment
 `npm run tauri dev` -- for anything else look @ Tauri Getting Started examples
