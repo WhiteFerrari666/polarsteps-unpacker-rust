@@ -15,7 +15,7 @@ function App() {
   }
 
   async function generateFile() {
-    setPath(await invoke("generate_file", { data_path: path() }));
+    await invoke("generate_file_from_json", { data_path: path() });
     console.log(path())
   }
 

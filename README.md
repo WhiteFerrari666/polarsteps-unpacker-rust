@@ -1,5 +1,8 @@
 ## Small app that prints JSON content from Polarsteps into an MS Word document
 
+#### run dev environment
+`npm run tauri dev` -- for anything else look @ Tauri Getting Started examples
+
 #### stuff I learned along the way
 
 ##### tauri commands and parameter names 
