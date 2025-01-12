@@ -102,6 +102,7 @@ fn generate_file_from_json(data_path: &str) -> () {
 
 fn main() {
     tauri::Builder::default()
+        .plugin(tauri_plugin_shell::init())
         .invoke_handler(tauri::generate_handler![
             show_path,
             generate_file,
