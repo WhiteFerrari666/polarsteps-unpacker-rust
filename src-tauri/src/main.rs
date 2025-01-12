@@ -1,8 +1,12 @@
 // Prevents additional console window on Windows in release, DO NOT REMOVE!!
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
-use serde::{Deserialize, Serialize};
+mod model;
+
 use std::fs;
+use model::foo::Foo;
+use model::foos::Foos;
+use model::trip::StepLocation;
 
 // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
 #[tauri::command(rename_all = "snake_case")]
@@ -17,7 +21,7 @@ fn show_path(path: &str) -> String {
 
 #[tauri::command(rename_all = "snake_case")]
 fn generate_file(data_path: &str) -> () {
-    // this call is not not working yet? Why?
+    // this call is not working yet? Why?
     println!("This is just a log message from Rust for now. Selected data_Path is {data_path}");
 
     // ls -a
@@ -29,46 +33,6 @@ fn generate_file(data_path: &str) -> () {
             }
         }
     }
-}
-
-#[derive(Serialize, Deserialize, Debug)]
-struct Trip {
-    name: String,
-    start_date: i32,
-    end_date: i32,
-    total_km: i32,
-    summary: String,
-    cover_photo_path: String,
-    all_steps: Vec<Step>,
-}
-
-#[derive(Serialize, Deserialize, Debug)]
-struct Step {
-    id: i32,
-    description: String,
-    slug: String,
-    start_time: i32,
-    location: StepLocation,
-    weather_condition: String,
-    weather_temperatur: i32,
-}
-
-#[derive(Serialize, Deserialize, Debug)]
-struct StepLocation {
-    name: String,
-    detail: String,
-    lat: i32,
-    lon: i32,
-}
-
-#[derive(Serialize, Deserialize, Debug)]
-struct Foos {
-    baz: Vec<Foo>,
-}
-
-#[derive(Serialize, Deserialize, Debug)]
-struct Foo {
-    bar: String,
 }
 
 #[tauri::command(rename_all = "snake_case")]
